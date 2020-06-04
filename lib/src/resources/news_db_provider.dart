@@ -1,3 +1,4 @@
+import 'package:hackernewsflutter/src/resources/repository.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
@@ -5,8 +6,12 @@ import 'package:path/path.dart';
 import 'dart:async';
 import 'package:hackernewsflutter/src/models/item_model.dart';
 
-class NewsDbProvider {
+class NewsDbProvider implements Source, Cache {
   Database db;
+
+  Future<List<int>> fetchTopIds() {
+    return null;
+  }
 
   void init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
