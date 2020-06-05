@@ -4,8 +4,9 @@ import 'package:hackernewsflutter/src/models/item_model.dart';
 class Comment extends StatelessWidget {
   final int itemId;
   final Map<int, Future<ItemModel>> itemMap;
+  final int depth;
 
-  Comment({this.itemId, this.itemMap});
+  Comment({this.itemId, this.itemMap, this.depth});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,10 @@ class Comment extends StatelessWidget {
           ListTile(
             title: Text(item.text),
             subtitle: item.by == '' ? Text('Deleted') : Text(item.by),
+            contentPadding: EdgeInsets.only(
+              right: 16.0,
+              left: (depth + 1) * 16.0,
+            ),
           ),
           Divider(),
         ];
@@ -31,6 +36,7 @@ class Comment extends StatelessWidget {
             Comment(
               itemId: kidId,
               itemMap: itemMap,
+              depth: depth + 1,
             ),
           );
         });
