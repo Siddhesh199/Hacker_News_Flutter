@@ -36,10 +36,33 @@ class NewsDetail extends StatelessWidget {
               return Text('Loading');
             }
 
-            return Text(itemSnapshot.data.title);
+            return buildList(itemSnapshot.data, snapshot.data);
           },
         );
       },
+    );
+  }
+
+  Widget buildList(ItemModel item, Map<int, Future<ItemModel>> itemMap) {
+    return ListView(
+      children: [
+        buildTitle(item),
+      ],
+    );
+  }
+
+  Widget buildTitle(ItemModel item) {
+    return Container(
+      margin: EdgeInsets.all(10.0),
+      alignment: Alignment.topCenter,
+      child: Text(
+        item.title,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 20.0,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 }
